@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layaut/layaut :: head"></head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por Favor Espera...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav th:replace="layaut/layaut :: nav">  </nav>
+    <!-- #Top Bar -->
+    <section th:replace="layaut/layaut :: menu"></section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    AGREGAR CARGO
+                </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div th:replace="layaut/layaut :: alert"></div>
+                            <div class="alert alert-danger text-center">
+                                <strong>CARGO</strong>
+                            </div>
+                            <form action="../../../../hardware-servicio/add_cargo" method="POST">
+                                <label >DESCRIPCIÓN DEL CARGO</label>
+                                <input type="hidden" name="id_persona">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="hidden" name="id_cargo">
+                                        <input type="text" name="cargo" class="form-control" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">ENVIAR</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-header">
+                <h2>
+                    AGREGAR UNIDAD FUNCIONAL
+                </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div th:replace="layaut/layaut :: alert3"></div>
+                            <div class="alert alert-danger text-center">
+                                <strong>UNIDAD</strong>
+                            </div>
+                            <form action="../../../../hardware-servicio/add_unidad" method="POST">
+                                <label>DESCRIPCIÓN DE LA UNIDAD FUNCIONAL</label>
+                                <input type="hidden" name="id_persona">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="hidden" name="id_unidad">
+                                        <input type="text" name="unidad" class="form-control" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary m-t-15 waves-effect">ENVIAR</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    
+    <!-- Jquery Core Js -->
+    <script src="../../../../plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../../../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../../../plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="../../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../../../js/admin.js"></script>
+    <script src="../../../../js/pages/tables/jquery-datatable.js"></script>
+    <script src="../../../../js/pages/ui/modals.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../../../js/demo.js"></script>
+
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+       $("#s1").select2({
+           placeholder: "Seleccione...",
+           allowClear: true
+       });
+       $("#s2").select2({
+        placeholder: "Seleccione...",
+        allowClear: true
+    });
+    </script>
+</body>
+
+</html>

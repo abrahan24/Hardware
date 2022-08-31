@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layaut/layaut :: head"></head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por Favor Espera...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav th:replace="layaut/layaut :: nav">  </nav>
+    <!-- #Top Bar -->
+    <section th:replace="layaut/layaut :: menu"></section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    SEGUIMIENTO DE EQUIPO
+                </h2>
+            </div>
+            <!-- #END# Basic Examples -->
+            <!-- Exportable Table 
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                            <th>Solicitante</th>
+                                            <th>Unidad Funcional</th>
+                                            <th>Codigo de Equipo</th>
+                                            <th>Tipo de Equipo</th>
+                                            <th>Fecha de Recepcion</th>
+                                            <th th:if="${servicio.fecha_entrega != null}">Fecha de Entrega</th>
+                                            <th>Estado</th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Solicitante</th>
+                                            <th>Unidad Funcional</th>
+                                            <th>Codigo de Equipo</th>
+                                            <th>Tipo de Equipo</th>
+                                            <th>Fecha de Recepcion</th>
+                                            <th th:if="${servicio.fecha_entrega != null}">Fecha de Entrega</th>
+                                            <th>Estado</th> 
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr th:if="${servicio.estado != null}">                   
+                                            <td th:text="${servicio.persona.nombre+' '+servicio.persona.ap_paterno+' '+servicio.persona.ap_materno}"></td>
+                                            <td th:text="${servicio.persona.unidad.unidad}"></td>
+                                            <td th:text="${servicio.almacen.cod_equipo}"></td>
+                                            <td th:text="${servicio.tipoEquipo.equipo}"></td>
+                                            <td th:text="${#dates.format(servicio.fecha_recepcion, 'dd MMMM yyyy')}"></td>
+                                            <td th:if="${servicio.fecha_entrega != null}" th:text="${#dates.format(servicio.fecha_entrega, 'dd MMMM yyyy')}"></td>
+            
+                                            <td >
+                                                <button th:if="${servicio.estado == 'P'}"type="button" class="btn btn-danger waves-effect" >
+                                                    <i class="material-icons">report_problem</i>
+                                                    <span>EN ESPERA</span>
+                                                </button>
+                                                <button th:if="${servicio.estado == 'A' || servicio.estado == 'B'}" type="button" class="btn bg-amber waves-effect" >
+                                                    <i class="material-icons">settings</i>
+                                                    <span>EN PROCESO</span>
+                                                </button>
+                                                <button th:if="${servicio.estado == 'T'}"type="button" class="btn btn-success waves-effect" >
+                                                    <i class="material-icons">done</i>
+                                                    <span>TERMINADO</span>
+                                                </button>
+                                            </td>
+                                        </tr>                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- #END# Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-red">
+                            <h2 th:text="${'FICHA N°'+servicio.id_servicio}">
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="body table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="2" scope="row">COD UAP <i class="material-icons" style="font-size: 11px !important">send</i></th>
+                                            <td colspan="2" th:text="${servicio.almacen.cod_equipo}"></td>      
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2"  scope="row">CI <i class="material-icons" style="font-size: 11px !important">send</i></th>
+                                            <td colspan="2" th:text="${servicio.persona.ci}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" scope="row">TIPO EQUIPO <i class="material-icons" style="font-size: 11px !important">send</i></th>
+                                            <td colspan="2" th:text="${servicio.almacen.tipoEquipo.equipo}">Larry</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" scope="row">ESTADO <i class="material-icons" style="font-size: 11px !important">send</i></th>
+                                            <td colspan="2">
+                                                <button th:if="${servicio.estado == 'P'}"type="button" class="btn btn-danger waves-effect" >
+                                                    <i class="material-icons">report_problem</i>
+                                                    <span>EN ESPERA</span>
+                                                </button>
+                                                <button th:if="${servicio.estado == 'A' || servicio.estado == 'B'}" type="button" class="btn bg-amber waves-effect" >
+                                                    <i class="material-icons">settings</i>
+                                                    <span>EN PROCESO</span>
+                                                </button>
+                                                <button th:if="${servicio.estado == 'T'}"type="button" class="btn btn-success waves-effect" >
+                                                    <i class="material-icons">done</i>
+                                                    <span>TERMINADO</span>
+                                                </button>
+                                            </td>  
+                                        </tr>                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+
+    
+    <!-- Jquery Core Js -->
+    <script src="../../../../plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../../../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../../../plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="../../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../../../js/admin.js"></script>
+    <script src="../../../../js/pages/tables/jquery-datatable.js"></script>
+    <script src="../../../../js/pages/ui/modals.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../../../js/demo.js"></script>
+
+</body>
+
+</html>

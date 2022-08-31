@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+
+  <body>
+    <div th:fragment="content1">
+      <label>TIPO EQUIPO</label>
+      <div class="form-line">
+        <a
+          type="button"
+          class="btn bg-red btn-block btn-lg waves-effect"
+          disable
+        >
+          <i
+            class="material-icons"
+            style="font-size: 50px !important"
+            th:text="${almacen.tipoEquipo.icono}"
+          ></i
+          ><br />
+          <span th:text="${almacen.tipoEquipo.equipo}"></span>
+        </a>
+      </div>
+      <br />
+      <label>DESCRIPCIÓN DEL EQUIPO</label>
+      <div class="form-group">
+        <div class="form-line">
+          <textarea th:field="${almacen.descripcion}"  type="text"  rows="3" class="form-control no-resize" disabled></textarea>
+        </div>
+      </div>
+        <!--<label>MODELO </label>
+        <div class="form-group">
+          <div class="form-line">
+            <input th:value="${almacen.modelo}" type="text" class="form-control" disabled/>
+          </div>
+        </div>
+        <label>SERIE </label>
+        <div class="form-group">
+          <div class="form-line">
+            <input th:value="${almacen.serie}" type="text" class="form-control" disabled />
+          </div>
+        </div>-->
+    </div>
+  </body>
+</html>

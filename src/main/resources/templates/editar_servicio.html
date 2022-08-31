@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layaut/layaut :: head"> </head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por Favor Espera...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+
+    <nav th:replace="layaut/layaut :: nav" class="navbar"></nav>
+   
+    <section th:replace="layaut/layaut :: menu"></section>
+
+    
+    
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Vertical Layout -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div th:replace="layaut/layaut :: alert"></div>
+                            <div class="alert alert-danger text-center">
+                                <strong>DATOS SOLICITANTES</strong>
+                            </div>
+                            <form action="../../../../hardware/servicio" method="POST">
+                                <label >NOMBRES</label>
+                                <input type="hidden" th:field="${persona.id_persona}" >
+                                <input type="hidden" th:field="${servicio.id_servicio}">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.nombre}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <label >APELLIDO PATERNO</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.ap_paterno}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <label >APELLIDO MATERNO  </label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.ap_materno}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <label >CARNET DE IDENTIDAD (CI)  </label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.ci}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <label for="password">CELULAR  </label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="number" th:field="${persona.celular}" class="form-control" disabled>
+                                    </div>
+                                </div>
+                               <!-- <label >UNIDAD </label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.unidad.unidad}" class="form-control" >
+                                    </div>
+                                </div>
+                                <label >CARGO </label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" th:field="${persona.cargo.cargo}" class="form-control" >
+                                    </div>
+                                </div>-->
+                                <div class="alert alert-danger text-center">
+                                    <strong>PROCEDENCIA</strong>
+                                </div>
+                                <label >PROCEDENCIA DE ENTREGA</label>
+                                <div>
+                                    <select name="id_procedencia" style="width: 100%" id="s2" class="js-states form-control" required>
+                                        <option selected disable hidden ></option>
+                                        <th:block th:each="pr : ${procedencias}">
+                                            <option th:value="${pr.id_procedencia}" th:text="${pr.procedencia}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="alert alert-danger text-center">
+                                    <strong>DATOS DEL EQUIPO</strong>
+                                </div>
+                                <label >CODIGO UAP</label>
+                                    <div>
+                                        <select name="id_almacen" style="width: 100%" id="s1" class="js-states form-control" onchange="buscar()" required>
+                                            <option selected disable hidden ></option>
+                                            <th:block th:each="al : ${almacenes}">
+                                                <option th:value="${al.id_almacen}" th:text="${al.cod_equipo}"></option>
+                                            </th:block>
+                                        </select>
+                                        
+                                    </div>
+                                    
+                                  <br>
+                                  <div id="replace_div">
+                                    
+                                  </div>
+                                    <label >ACCESORIOS </label><br>
+                                    <br>
+                                    <div <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <div class="demo-switch-title"></div>
+                                        <div class="switch">
+                                            <label>NO<input name="accesorio" type="checkbox"><span class="lever switch-col-red"></span>SI</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                   <div class="alert alert-danger text-center">
+                                        <strong>POSIBLES FALLAS</strong>
+                                    </div>
+                                    <div class="demo-checkbox">
+                                        <th:block th:each="fe : ${tipoequipo.fallaEquipos}">
+                                            <input name="id_falla" th:value="${fe.falla.id_falla}" type="checkbox" th:id="${fe.falla.id_falla}" class="filled-in chk-col-red"  />
+                                            <label th:text="${fe.falla.falla}" th:for="${fe.falla.id_falla}">RED</label>
+                                    </th:block>
+                                    
+                                    </div>
+                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">ENVIAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    </section>
+
+
+    <script>
+        function buscar() {
+			//call function when page is loaded
+			getContent();
+			//set on change listener
+			$('#s1').change(getContent);
+			function getContent() {
+				//create url to request fragment
+				var url = "../../../../hardware/almacen/"
+						+ $('#s1').val();
+				//load fragment and replace content
+				$('#replace_div').load(url);
+			}
+		}
+    </script>
+    <!-- Jquery Core Js -->
+    <script src="../../../../plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="../../../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="../../../../plugins/dropzone/dropzone.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="../../../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="../../../../plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="../../../../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="../../../../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="../../../../plugins/nouislider/nouislider.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../../../plugins/node-waves/waves.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../../../js/admin.js"></script>
+    <script src="../../../../js/pages/forms/advanced-form-elements.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../../../js/demo.js"></script>
+
+    <script src="../../../../js/select2.full.min.js"></script>
+
+   
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+       $("#s1").select2({
+           placeholder: "Seleccione...",
+           allowClear: true
+       });
+       $("#s2").select2({
+        placeholder: "Seleccione...",
+        allowClear: true
+    });
+    </script>
+</body>
+
+</html>
